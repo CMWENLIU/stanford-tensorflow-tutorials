@@ -35,13 +35,13 @@ def read_birth_life_data(filename):
     data in the form of NumPy array
     n_samples: number of samples
     """
-    text = open(filename, 'r').readlines()[1:]
-    data = [line[:-1].split('\t') for line in text]
+    text = open(filename, 'r').readlines()[1:]  #read form the second line to end
+    data = [line[:-1].split('\t') for line in text] #line[:-1] omit the last '/n' which is added when reading lines
     births = [float(line[1]) for line in data]
     lifes = [float(line[2]) for line in data]
-    data = list(zip(births, lifes))
+    data = list(zip(births, lifes)) #create tuples of births and lifes
     n_samples = len(data)
-    data = np.asarray(data, dtype=np.float32)
+    data = np.asarray(data, dtype=np.float32)#Convert the input (list of tuples) to an array.
     return data, n_samples
 
 def download_one_file(download_url, 
